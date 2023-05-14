@@ -3,6 +3,7 @@
 import Tab from '../components/tab';
 import Image from 'next/image';
 import React, { useState, useRef } from 'react';
+import { createMessage } from '@/services/chat.service';
 
 export default function Home() {
 	const [text, setText] = useState('');
@@ -33,6 +34,26 @@ export default function Home() {
 			}
 		}
 	};
+
+	const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+		if (e.key === 'Enter' && !e.shiftKey && text) {
+			e.preventDefault();
+			submitMessage();
+		}
+	};
+
+	const submitMessage = async () => {
+		try {
+			const response = await createMessage({ content: text })
+			console.log(response);
+			setText("");
+			
+		} catch (error) {
+			console.log("some thing error", error);
+			
+		}
+	}
+
 	return (
 		<main className="pt-6 pb-6 pl-6 pr-6 flex">
 			<Tab />
@@ -68,6 +89,7 @@ export default function Home() {
 							onChange={handleChange}
 							rows={numLines}
 							value={text}
+							onKeyDown={handleKeyDown}
 							className={`w-full bg-[#333334] border-[#fff] rounded-lg text-sm p-4 text-white focus:border-none focus:outline-none resize-none`}
 						/>
 					</div>
