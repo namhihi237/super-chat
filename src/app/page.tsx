@@ -1,10 +1,42 @@
+'use client';
+
 import Tab from '../components/tab';
 import Image from 'next/image';
+import React, { useState, useRef } from 'react';
+
 export default function Home() {
+	const [text, setText] = useState('');
+	const textAreaRef = useRef<HTMLTextAreaElement>(null);
+	const [numLines, setNumLines] = useState(1);
+	const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+		const textArea = textAreaRef.current;
+
+		if (textArea) {
+			setText(e.target.value);
+			if (!e.target.value) {
+				setNumLines(1);
+				return;
+			}
+
+			const lineHeight = parseInt(getComputedStyle(textArea).lineHeight);
+
+			const rows = Math.ceil(
+				(textArea.scrollHeight - 2 * lineHeight) / lineHeight,
+			);
+
+			if (rows > 5) {
+				setNumLines(5);
+				textArea.style.overflowY = 'auto';
+			} else {
+				textArea.style.overflowY = 'hidden';
+				setNumLines(rows);
+			}
+		}
+	};
 	return (
 		<main className="pt-6 pb-6 pl-6 pr-6 flex">
 			<Tab />
-			<div className="bg-[#23252B] h-[700px] w-[1090px] rounded-[25px] flex">
+			<div className="bg-[#23252B] h-[90vh] w-5/6 rounded-[25px] flex">
 				<div className="w-3/4 pt-14 flex-col flex justify-between">
 					<div className="overflow-auto h-5/6 pr-8 pb-8 pl-12  border-b border-[#494949]">
 						{[1, 2, 3, 4, 5, 6, 7].map((e, index) => (
@@ -30,10 +62,13 @@ export default function Home() {
 						))}
 					</div>
 					<div className="pl-12 pr-8 items-center pb-4">
-						<input
-							type="text"
+						<textarea
+							ref={textAreaRef}
 							placeholder="Typing whatever you want?"
-							className="w-full h-11 bg-[#333334] border-[#fff] rounded-lg text-sm p-4 text-white focus:border-none"
+							onChange={handleChange}
+							rows={numLines}
+							value={text}
+							className={`w-full bg-[#333334] border-[#fff] rounded-lg text-sm p-4 text-white focus:border-none focus:outline-none resize-none`}
 						/>
 					</div>
 				</div>
