@@ -1,8 +1,8 @@
-# Project Title
+# Super Chat
 
 ## Project Description
 
-This project uses Next.js and OpenAI to create an interactive chat system where users can engage in a conversation with an AI model.
+This project uses Next.js and tailwind, openai to create an interactive chat system where users can engage in a conversation with an AI model.
 
 ## Technical Stack
 
