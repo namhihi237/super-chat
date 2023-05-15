@@ -3,7 +3,8 @@ import { Message } from '../utils/types';
 const axios = getAxiosInstance(false);
 
 async function createMessage(message: Message) {
-	return axios.post('chat', message);
+	const response = await axios.post('chat', message);
+	return response.data.data;
 }
 
 async function getChatList() {
@@ -11,4 +12,9 @@ async function getChatList() {
 	return response.data.data;
 }
 
-export { createMessage, getChatList };
+async function getMessagesByChatId(chatId: string) {
+	const response = await axios.get(`chat/${chatId}`);
+	return response.data.data;
+}
+
+export { createMessage, getChatList, getMessagesByChatId };
