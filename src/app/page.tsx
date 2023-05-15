@@ -1,9 +1,10 @@
 'use client';
 
 import Tab from '../components/tab';
-import Image from 'next/image';
 import React, { useState, useRef } from 'react';
 import { createMessage } from '@/services/chat.service';
+import InfoCard from '../components/InforCard';
+import { cardInfo } from '../constants/cartInfo';
 
 export default function Home() {
 	const [text, setText] = useState('');
@@ -44,15 +45,13 @@ export default function Home() {
 
 	const submitMessage = async () => {
 		try {
-			const response = await createMessage({ content: text })
+			const response = await createMessage({ content: text });
 			console.log(response);
-			setText("");
-			
+			setText('');
 		} catch (error) {
-			console.log("some thing error", error);
-			
+			console.log('some thing error', error);
 		}
-	}
+	};
 
 	return (
 		<main className="pt-6 pb-6 pl-6 pr-6 flex">
@@ -60,26 +59,8 @@ export default function Home() {
 			<div className="bg-[#23252B] h-[90vh] w-5/6 rounded-[25px] flex">
 				<div className="w-3/4 pt-14 flex-col flex justify-between">
 					<div className="overflow-auto h-5/6 pr-8 pb-8 pl-12  border-b border-[#494949]">
-						{[1, 2, 3, 4, 5, 6, 7].map((e, index) => (
-							<div
-								className="pt-3 px-4 pb-5 mb-4 border border-[#656565] rounded-xl flex"
-								key={index}
-							>
-								<div>
-									<div className="w-10 h-10 rounded-full bg-[#282C34] border border-[#656565] justify-center flex">
-										<Image src="./logo.svg" alt="" width={22} height={22} />
-									</div>
-								</div>
-								<div className="px-4 w-[5/6]">
-									<p className="pb-2 text-white">Personalization</p>
-									<p className="text-gray-72">
-										Al can analyze user data and behavior to create personalized
-										experiences for individual users. This can help designers
-										create interfaces that adapt to each user’s preferences,
-										making the interface more intuitive and user-friendly.
-									</p>
-								</div>
-							</div>
+						{cardInfo.map((item, index) => (
+							<InfoCard key={index} item={item} />
 						))}
 					</div>
 					<div className="pl-12 pr-8 items-center pb-4">
