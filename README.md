@@ -1,34 +1,36 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Project Title
 
-## Getting Started
+## Project Description
 
-First, run the development server:
+This project uses Next.js and OpenAI to create an interactive chat system where users can engage in a conversation with an AI model.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Technical Stack
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Next.js**: A lightweight framework for static and server-rendered applications built with React. It provides out-of-the-box features such as server-side rendering and generating static websites for React-based web applications.
+- **OpenAI**: An AI model developed by OpenAI. This model is capable of generating human-like text based on the input it receives. It's used here to create the chat responses.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Create Conversation**: This feature allows users to start a new conversation with the AI model. The conversation context is maintained throughout, providing a seamless chatting experience.
+- **Chat with AI**: Users can input their text queries/questions and receive text responses from the AI model. The AI model generates responses that simulate a human-like conversation.
 
-## Learn More
+## How to Setup
 
-To learn more about Next.js, take a look at the following resources:
+1. Clone the repository: `git clone <repository url>`.
+2. Install dependencies: Navigate to the project directory in your terminal and run `npm install`.
+3. Set up the OpenAI API key: Create a `.env` file in the root of your project. Add your API to this file
+4. Run the project: In the project directory, you can run `npm run dev` to start the development server.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Navigate to the localhost URL (usually `http://localhost:3000`) in your web browser to access the application.
+2. Start a new conversation with the AI by clicking the 'Start Conversation' button.
+3. Type your message in the input field and press 'Send' or hit 'Enter' to chat with the AI.
 
-## Deploy on Vercel
+## Contribution
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
