@@ -1,11 +1,14 @@
 import getAxiosInstance from '../utils/axios';
 import { Message } from '../utils/types';
+const axios = getAxiosInstance(false);
 
 async function createMessage(message: Message) {
-	const axios = getAxiosInstance(false);
-	axios.post('chat', message);
+	return axios.post('chat', message);
 }
 
-export  {
-	createMessage,
-};
+async function getChatList() {
+	const response = await axios.get('chat');
+	return response.data.data;
+}
+
+export { createMessage, getChatList };

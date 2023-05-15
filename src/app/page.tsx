@@ -5,6 +5,7 @@ import React, { useState, useRef } from 'react';
 import { createMessage } from '@/services/chat.service';
 import InfoCard from '../components/InforCard';
 import { cardInfo } from '../constants/cartInfo';
+import ChatList from '../components/ChatList';
 
 export default function Home() {
 	const [text, setText] = useState('');
@@ -76,9 +77,13 @@ export default function Home() {
 					</div>
 				</div>
 				<div className="w-1/4 pt-14 border-l border-[#494949] px-4 overflow-auto flex-col flex h-full justify-between pb-4">
-					<button className="w-full h-11 rounded-lg bg-[#227641] text-white">
-						New Chat
-					</button>
+					<div>
+						<button className="w-full h-11 rounded-lg bg-[#227641] text-white">
+							New Chat
+						</button>
+						<ChatList />
+					</div>
+
 					<button className="w-full h-11 rounded-lg bg-[#E93131] text-white">
 						Clear All
 					</button>
