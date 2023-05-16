@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
-import { getChatList } from '../services/chat.service';
+import { getChatList, deleteChat } from '../services/chat.service';
 import { truncateString } from '../utils/string';
 
 interface Chat {
@@ -39,6 +39,18 @@ export default function ChatList({
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [chatIdSelected]);
 
+	const handleDelete = async (id: string) => {
+		try {
+			await deleteChat(id);
+			if (id === chatIdSelected) {
+				setChatIdSelected('');
+			} 
+			setChatList(chatList.filter((chat) => chat._id !== id));
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	return (
 		<div className="h-full">
 			<p className="text-2xl">Chat List</p>
@@ -58,7 +70,7 @@ export default function ChatList({
 							</p>
 						</div>
 					</div>
-					<button>
+					<button onClick={() => handleDelete(item._id)}>
 						<Image src="./delete.svg" alt="" width={15} height={17} />
 					</button>
 				</div>

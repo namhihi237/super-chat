@@ -17,4 +17,9 @@ async function getMessagesByChatId(chatId: string) {
 	return response.data.data;
 }
 
-export { createMessage, getChatList, getMessagesByChatId };
+async function deleteChat(chatId: string) {
+	const response = await axios.delete(`chat/${chatId}`);
+	return response.data.data;
+}
+
+export { createMessage, getChatList, getMessagesByChatId, deleteChat };
