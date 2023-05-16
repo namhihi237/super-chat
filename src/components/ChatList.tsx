@@ -6,7 +6,7 @@ import { truncateString } from '../utils/string';
 interface Chat {
 	_id: string;
 	name: string;
-	timestamp: string;
+	updated_at: string;
 }
 
 interface ChatListProps {
@@ -44,11 +44,15 @@ export default function ChatList({
 			await deleteChat(id);
 			if (id === chatIdSelected) {
 				setChatIdSelected('');
-			} 
+			}
 			setChatList(chatList.filter((chat) => chat._id !== id));
 		} catch (error) {
 			console.log(error);
 		}
+	};
+
+	const formatTime = (originalTime: string) => {
+		return new Date(originalTime).toLocaleString('en-US');
 	};
 
 	return (
@@ -66,7 +70,7 @@ export default function ChatList({
 								<p>{truncateString(item.name, 22)}</p>
 							</button>
 							<p className="text-xs font-light text-[#CBCBCB]">
-								{item.timestamp}
+								{formatTime(item.updated_at)}
 							</p>
 						</div>
 					</div>

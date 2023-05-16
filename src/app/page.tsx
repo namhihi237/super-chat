@@ -8,12 +8,13 @@ import { cardInfo } from '../constants/cartInfo';
 import ChatList from '../components/ChatList';
 import { getMessagesByChatId } from '@/services/chat.service';
 import MessageCard from '../components/MessageCard';
-
+import { ChatType } from '../utils/types';
 interface Message {
 	_id: string;
 	chatId: string;
 	content: string;
 	answer: string;
+	role: string;
 	timestamp: string;
 }
 
@@ -63,6 +64,7 @@ export default function Home() {
 			const message = await createMessage({
 				content: text,
 				chatId: chatIdSelected,
+				type: ChatType.Chat,
 			});
 			setText('');
 

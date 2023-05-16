@@ -7,6 +7,7 @@ interface Message {
 	_id: string;
 	content: string;
 	answer: string;
+	role: string;
 }
 
 export default function MessageCard({ message }: { message: Message }) {
@@ -20,7 +21,7 @@ export default function MessageCard({ message }: { message: Message }) {
 			<div className="px-4 w-[5/6]">
 				<p className="pb-2 text-white">{message.content}</p>
 				<ReactMarkdown remarkPlugins={[remarkGfm]} className="text-[#656565]">
-					{message.answer}
+					{message.answer || message.content}
 				</ReactMarkdown>
 			</div>
 		</div>
